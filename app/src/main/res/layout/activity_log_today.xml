@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <TextView
+        android:id="@+id/Title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="10dp"
+        android:text="今天的日记"
+        android:textSize="30dp"/>
+
+    <EditText
+        android:id="@+id/Content"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:minLines="17"
+        android:inputType="textMultiLine"
+        android:hint="点击此处输入文字"
+        android:background="@null"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_alignParentStart="true"
+        android:layout_above="@+id/save"
+        android:layout_alignParentEnd="true"
+        android:layout_below="@+id/Title"
+        android:gravity="left|top"
+        android:textSize="20dp"/>
+
+    <Button
+        android:id="@+id/save"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="保存"
+        android:layout_alignParentBottom="true"
+        android:layout_alignStart="@+id/Content" />
+
+    <Button
+        android:id="@+id/select_all"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="全选"
+        android:layout_alignParentBottom="true"
+        android:layout_alignEnd="@+id/Content" />
+
+    <TextView
+        android:id="@+id/count_words"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/Title"
+        android:layout_alignEnd="@+id/Content"
+        android:text="0个字" />
+
+</RelativeLayout>

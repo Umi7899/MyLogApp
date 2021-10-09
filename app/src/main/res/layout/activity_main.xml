@@ -17,7 +17,7 @@
         android:format12Hour="yyyy年MM月dd日"
         android:format24Hour="yyyy年MM月dd日" />
     <ImageButton
-        android:id="@+id/imageButton"
+        android:id="@+id/log_today"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="50dp"
@@ -25,7 +25,7 @@
         android:layout_gravity="center"
         />
     <ImageButton
-        android:id="@+id/imageButton2"
+        android:id="@+id/log_before"
         android:layout_width="wrap_content"
         android:layout_marginTop="50dp"
         android:layout_height="wrap_content"
