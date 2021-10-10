@@ -18,8 +18,17 @@ public class MainActivity extends AppCompatActivity {
         log_today.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent=new Intent(MainActivity.this,LogToday.class);
-                startActivity(intent);
+                Intent intent1=new Intent(MainActivity.this,LogToday.class);
+                startActivity(intent1);
+            }
+        });
+
+        ImageButton log_before=(ImageButton) findViewById(R.id.log_before);
+        log_before.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent2=new Intent(MainActivity.this,ShowAllLogs.class);
+                startActivity(intent2);
             }
         });
     }

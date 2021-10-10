@@ -10,6 +10,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MyLogApp">
         <activity
+            android:name=".ViewLogs"
+            android:exported="true" />
+        <activity
+            android:name=".ShowAllLogs"
+            android:exported="true" />
+        <activity
             android:name=".LogToday"
             android:exported="true" />
         <activity

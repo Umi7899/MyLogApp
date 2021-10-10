@@ -3,6 +3,7 @@ package com.example.mylogapp;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
@@ -19,23 +20,25 @@ import java.io.OutputStreamWriter;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-public class LogToday extends AppCompatActivity {
+public class ViewLogs extends AppCompatActivity {
 
-    private EditText Content;
+    private EditText Content_1;
+    public static final String LOGS_NAME="logs_name";
+    private String logsName;
 
-    Date date = new Date();
-    SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy年MM月dd日");
-    String date_string = dateFormat.format(date);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_log_today);
-        Content = (EditText) findViewById(R.id.Content);
+        setContentView(R.layout.activity_view_logs);
+
+        Intent intent=getIntent();
+        logsName=intent.getStringExtra(LOGS_NAME);
+        Content_1 = (EditText) findViewById(R.id.Content_1);
         String inputText=load();
         if(!TextUtils.isEmpty(inputText)){
-            Content.setText(inputText);
-            Content.setSelection(inputText.length());
+            Content_1.setText(inputText);
+            Content_1.setSelection(inputText.length());
         }
     }
 
@@ -43,7 +46,7 @@ public class LogToday extends AppCompatActivity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        String inputText=Content.getText().toString();
+        String inputText=Content_1.getText().toString();
         save(inputText);
     }
 
@@ -51,7 +54,7 @@ public class LogToday extends AppCompatActivity {
         FileOutputStream out=null;
         BufferedWriter writer=null;
         try{//文本写入文件
-            out=openFileOutput(date_string, Context.MODE_PRIVATE);
+            out=openFileOutput(logsName, Context.MODE_PRIVATE);
             writer=new BufferedWriter(new OutputStreamWriter(out));
             writer.write(inputText);
         }catch (IOException e) {//异常处理
@@ -72,7 +75,7 @@ public class LogToday extends AppCompatActivity {
         BufferedReader reader=null;
         StringBuilder content=new StringBuilder();
         try{
-            in=openFileInput(date_string);
+            in=openFileInput(logsName);
             reader=new BufferedReader(new InputStreamReader(in));
             String line="";
             //逐行读取写入content
