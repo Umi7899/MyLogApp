@@ -26,25 +26,25 @@
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
         android:layout_alignParentStart="true"
-        android:layout_above="@+id/save"
+        android:layout_above="@+id/music"
         android:layout_alignParentEnd="true"
         android:layout_below="@+id/Title"
         android:gravity="left|top"
         android:textSize="20dp"/>
 
     <Button
-        android:id="@+id/save"
+        android:id="@+id/music"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="保存"
+        android:text="插入表情"
         android:layout_alignParentBottom="true"
         android:layout_alignStart="@+id/Content" />
 
     <Button
-        android:id="@+id/select_all"
+        android:id="@+id/emoji"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="全选"
+        android:text="插入音乐"
         android:layout_alignParentBottom="true"
         android:layout_alignEnd="@+id/Content" />
 

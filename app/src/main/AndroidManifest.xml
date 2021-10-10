@@ -4,11 +4,14 @@
 
     <application
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@mipmap/ic_launcher_edit"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.MyLogApp">
+        <activity
+            android:name=".ViewLogs_only_Read"
+            android:exported="true" />
         <activity
             android:name=".ViewLogs"
             android:exported="true" />

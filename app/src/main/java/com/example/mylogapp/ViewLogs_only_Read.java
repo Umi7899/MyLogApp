@@ -6,8 +6,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
-import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
@@ -18,61 +16,28 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 
-public class ViewLogs extends AppCompatActivity {
+public class ViewLogs_only_Read extends AppCompatActivity {
 
-    private EditText Content_1;
-    private TextView DATE;
+    private TextView Content_2,DATE;
     public static final String LOGS_NAME="logs_name";
     private String logsName;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_view_logs);
-
+        setContentView(R.layout.activity_view_logs_only_read);
         Intent intent=getIntent();
         logsName=intent.getStringExtra(LOGS_NAME);
-        Content_1 = (EditText) findViewById(R.id.Content_1);
+        Content_2 = (TextView) findViewById(R.id.Content_2);
         DATE=(TextView)findViewById(R.id.date);
         DATE.setText(logsName);
         String inputText=load();
         if(!TextUtils.isEmpty(inputText)){
-            Content_1.setText(inputText);
-            Content_1.setSelection(inputText.length());
+            Content_2.setText(inputText);
         }
     }
 
-    //重写onDestroy方法，在退出编辑返回首页的时候获得输入内容
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        String inputText=Content_1.getText().toString();
-        save(inputText);
-    }
-
-    public void save(String inputText) {
-        FileOutputStream out=null;
-        BufferedWriter writer=null;
-        try{//文本写入文件
-            out=openFileOutput(logsName, Context.MODE_PRIVATE);
-            writer=new BufferedWriter(new OutputStreamWriter(out));
-            writer.write(inputText);
-        }catch (IOException e) {//异常处理
-            e.printStackTrace();
-        }finally {
-            try {
-                if (writer != null) {
-                    writer.close();
-                }
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        }
-    }
 
     public String load(){
         FileInputStream in=null;
@@ -99,6 +64,5 @@ public class ViewLogs extends AppCompatActivity {
         }
         return content.toString();
     }
-
 
 }

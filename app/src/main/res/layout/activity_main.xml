@@ -16,23 +16,40 @@
         android:textColor="@color/black"
         android:format12Hour="yyyy年MM月dd日"
         android:format24Hour="yyyy年MM月dd日" />
+
     <ImageButton
         android:id="@+id/log_today"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:scaleType="fitXY"
+        android:layout_gravity="center"
+        android:layout_marginTop="100dp"
+        android:background="#00FFFFFF"
+        app:srcCompat="@mipmap/ic_launcher" />
+    <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="50dp"
-        app:srcCompat="@drawable/ic_launcher_foreground"
+        android:text="写今天的日记"
         android:layout_gravity="center"
-        />
+        android:textSize="15dp"/>
+
     <ImageButton
         android:id="@+id/log_before"
-        android:layout_width="wrap_content"
-        android:layout_marginTop="50dp"
-        android:layout_height="wrap_content"
-        app:srcCompat="@drawable/ic_launcher_foreground"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
         android:layout_gravity="center"
-         />
+        android:layout_marginTop="50dp"
+        android:backgroundTint="#00FFFFFF"
+        android:scaleType="fitXY"
 
+        app:srcCompat="@mipmap/ic_launcher_logs"
+        tools:srcCompat="@mipmap/ic_launcher_logs" />
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="查看历史日记"
+        android:textSize="15dp"/>
 
 </LinearLayout>
