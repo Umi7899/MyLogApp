@@ -39,11 +39,13 @@ public class LogsAdapter extends RecyclerView.Adapter<LogsAdapter.ViewHolder> {
         LogsList=getLogsList;
         ifRead=onlyRead;
     }
+
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent,int viewType){
         if(mContext==null){
             mContext=parent.getContext();
         }
+
         View view= LayoutInflater.from(mContext).inflate(R.layout.logs_layout,parent,false);
 
         final ViewHolder holder=new ViewHolder(view);
