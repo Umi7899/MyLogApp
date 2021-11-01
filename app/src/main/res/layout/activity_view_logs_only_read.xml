@@ -47,11 +47,5 @@
         android:gravity="left|top"
         android:textSize="20dp"/>
 
-    <TextView
-        android:id="@+id/count_words_1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/Title_2"
-        android:layout_alignEnd="@+id/Content_2"
-        android:text="0个字" />
+
 </RelativeLayout>
