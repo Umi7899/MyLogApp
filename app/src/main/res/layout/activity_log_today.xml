@@ -48,5 +48,12 @@
         android:layout_alignParentBottom="true"
         android:layout_alignEnd="@+id/Content" />
 
+    <TextView
+        android:id="@+id/count_words"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/Title"
+        android:layout_alignEnd="@+id/Content"
+        android:text="0个字" />
 
 </RelativeLayout>
