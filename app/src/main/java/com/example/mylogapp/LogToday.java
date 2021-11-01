@@ -32,8 +32,8 @@ public class LogToday extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_log_today);
         Content = (EditText) findViewById(R.id.Content);
-        String inputText=load();
-        if(!TextUtils.isEmpty(inputText)){
+        String inputText = load();
+        if (!TextUtils.isEmpty(inputText)) {
             Content.setText(inputText);
             Content.setSelection(inputText.length());
         }
@@ -43,20 +43,20 @@ public class LogToday extends AppCompatActivity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        String inputText=Content.getText().toString();
+        String inputText = Content.getText().toString();
         save(inputText);
     }
 
     public void save(String inputText) {
-        FileOutputStream out=null;
-        BufferedWriter writer=null;
-        try{//文本写入文件
-            out=openFileOutput(date_string, Context.MODE_PRIVATE);
-            writer=new BufferedWriter(new OutputStreamWriter(out));
+        FileOutputStream out = null;
+        BufferedWriter writer = null;
+        try {//文本写入文件
+            out = openFileOutput(date_string, Context.MODE_PRIVATE);
+            writer = new BufferedWriter(new OutputStreamWriter(out));
             writer.write(inputText);
-        }catch (IOException e) {//异常处理
+        } catch (IOException e) {//异常处理
             e.printStackTrace();
-        }finally {
+        } finally {
             try {
                 if (writer != null) {
                     writer.close();
@@ -67,21 +67,21 @@ public class LogToday extends AppCompatActivity {
         }
     }
 
-    public String load(){
-        FileInputStream in=null;
-        BufferedReader reader=null;
-        StringBuilder content=new StringBuilder();
-        try{
-            in=openFileInput(date_string);
-            reader=new BufferedReader(new InputStreamReader(in));
-            String line="";
+    public String load() {
+        FileInputStream in = null;
+        BufferedReader reader = null;
+        StringBuilder content = new StringBuilder();
+        try {
+            in = openFileInput(date_string);
+            reader = new BufferedReader(new InputStreamReader(in));
+            String line = "";
             //逐行读取写入content
-            while((line=reader.readLine())!=null){
+            while ((line = reader.readLine()) != null) {
                 content.append(line);
             }
-        }catch (IOException e) {//异常处理
+        } catch (IOException e) {//异常处理
             e.printStackTrace();
-        }finally {
+        } finally {
             try {
                 if (reader != null) {
                     reader.close();

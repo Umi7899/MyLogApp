@@ -21,79 +21,75 @@ public class LogsAdapter extends RecyclerView.Adapter<LogsAdapter.ViewHolder> {
     private List<Logs> LogsList;
     private boolean ifRead;
 
-
     static class ViewHolder extends RecyclerView.ViewHolder {
         CardView cardView;
         TextView logName;
         ImageButton delete;
+
         public ViewHolder(View view) {
             super(view);
             cardView = (CardView) view;
             logName = (TextView) view.findViewById(R.id.log_name);
-            delete=(ImageButton)view.findViewById(R.id.delete);
+            delete = (ImageButton) view.findViewById(R.id.delete);
         }
     }
 
-    public LogsAdapter(List<Logs> getLogsList,boolean onlyRead){
-
-        LogsList=getLogsList;
-        ifRead=onlyRead;
+    public LogsAdapter(List<Logs> getLogsList, boolean onlyRead) {
+        LogsList = getLogsList;
+        ifRead = onlyRead;
     }
 
     @Override
-    public ViewHolder onCreateViewHolder(ViewGroup parent,int viewType){
-        if(mContext==null){
-            mContext=parent.getContext();
+    public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+        if (mContext == null) {
+            mContext = parent.getContext();
         }
-
-        View view= LayoutInflater.from(mContext).inflate(R.layout.logs_layout,parent,false);
-
-        final ViewHolder holder=new ViewHolder(view);
+        View view = LayoutInflater.from(mContext).inflate(R.layout.logs_layout, parent, false);
+        final ViewHolder holder = new ViewHolder(view);
         holder.cardView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                int position =holder.getAdapterPosition();
-                Logs logs=LogsList.get(position);
-                if(!ifRead) {
+                int position = holder.getAdapterPosition();
+                Logs logs = LogsList.get(position);
+                //选择是否只读
+                if (!ifRead) {
                     Intent intent = new Intent(mContext, ViewLogs.class);
                     intent.putExtra(ViewLogs.LOGS_NAME, logs.getName());
                     mContext.startActivity(intent);
-                }
-                else {
+                } else {
                     Intent intent_onlyR = new Intent(mContext, ViewLogs_only_Read.class);
                     intent_onlyR.putExtra(ViewLogs.LOGS_NAME, logs.getName());
                     mContext.startActivity(intent_onlyR);
                 }
             }
         });
-
+        //删除日记
         holder.delete.setOnClickListener(new View.OnClickListener() {
             @SuppressLint("NotifyDataSetChanged")
             @Override
             public void onClick(View view) {
-                int position =holder.getAdapterPosition();
-                Logs logs=LogsList.get(position);
+                int position = holder.getAdapterPosition();
+                Logs logs = LogsList.get(position);
                 LogsList.remove(position);
                 notifyDataSetChanged();
-                String logsName="data/data/com.example.mylogapp/files/"+logs.getName();
+                String logsName = "data/data/com.example.mylogapp/files/" + logs.getName();
                 File file = new File(logsName);
                 // 如果文件路径所对应的文件存在，并且是一个文件，则直接删除
                 if (file.exists() && file.isFile()) {
-                    Toast.makeText(mContext,"Delete!",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(mContext, "Delete!", Toast.LENGTH_SHORT).show();
                     file.delete();
                 }
             }
         });
-
         return holder;
     }
+
     @Override
-    public void onBindViewHolder(ViewHolder holder ,int position){
-        Logs log=LogsList.get(position);
+    public void onBindViewHolder(ViewHolder holder, int position) {
+        Logs log = LogsList.get(position);
         holder.logName.setText(log.getName());
     }
     public int getItemCount() {
         return LogsList.size();
     }
-
 }

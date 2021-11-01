@@ -32,7 +32,11 @@ public class ViewLogs_only_Read extends AppCompatActivity {
         Content_2 = (TextView) findViewById(R.id.Content_2);
         DATE=(TextView)findViewById(R.id.date);
         DATE.setText(logsName);
+        TextView textView=findViewById(R.id.count_words_1);
+
         String inputText=load();
+        String num= String.valueOf(inputText.trim().length());
+        textView.setText(num+"个字");
         if(!TextUtils.isEmpty(inputText)){
             Content_2.setText(inputText);
         }
