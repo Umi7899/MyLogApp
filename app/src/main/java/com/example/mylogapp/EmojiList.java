@@ -72,21 +72,21 @@ public class EmojiList extends AppCompatActivity {
         //}
     }
     private void initPicture(){
-        Picture laugh=new Picture("笑","[emoji0]",R.drawable.laugh);
+        Picture laugh=new Picture("笑","璽",R.drawable.laugh);
         picturelist.add(laugh);
-        Picture cry=new Picture("哭","[emoji1]",R.drawable.cry);
+        Picture cry=new Picture("哭","嚳",R.drawable.cry);
         picturelist.add(cry);
-        Picture arrogance=new Picture("嚣张","[emoji2]",R.drawable.arrogance);
+        Picture arrogance=new Picture("嚣张","郄",R.drawable.arrogance);
         picturelist.add(arrogance);
-        Picture dementia=new Picture("痴呆","[emoji3]",R.drawable.dementia);
+        Picture dementia=new Picture("痴呆","贔",R.drawable.dementia);
         picturelist.add(dementia);
-        Picture unhappy=new Picture("沮丧","[emoji4]",R.drawable.unhappy);
+        Picture unhappy=new Picture("沮丧","鞷",R.drawable.unhappy);
         picturelist.add(unhappy);
-        Picture sweat=new Picture("流汗","[emoji5]",R.drawable.sweat);
+        Picture sweat=new Picture("流汗","鼊",R.drawable.sweat);
         picturelist.add(sweat);
-        Picture think=new Picture("思考","[emoji6]",R.drawable.think);
+        Picture think=new Picture("思考","韘",R.drawable.think);
         picturelist.add(think);
-        Picture good=new Picture("棒","[emoji7]",R.drawable.good);
+        Picture good=new Picture("棒","鏚",R.drawable.good);
         picturelist.add(good);
     }
     public class Picture

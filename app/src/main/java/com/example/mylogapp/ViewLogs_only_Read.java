@@ -108,60 +108,59 @@ public class ViewLogs_only_Read extends AppCompatActivity {
         Drawable e=null;
         //e.setBounds(0, 0, e.getIntrinsicWidth(), e.getIntrinsicHeight());
         for(int i=0;i<savetext.length();i++) {
-            if(savetext.charAt(i)=='[') {
+            //if(savetext.charAt(i)=='[') {
                 ImageSpan emoji;
-                switch(savetext.charAt(i+6)) {
-                    case '0':
-                        e=getResources().getDrawable(R.drawable.laugh);
+                switch(savetext.charAt(i)) {
+                    case '璽':
+                        e = getResources().getDrawable(R.drawable.laugh);
                         e.setBounds(0, 0, 40, 40);
                         emoji = new ImageSpan(e, ImageSpan.ALIGN_BASELINE);
-                        addemoji.setSpan(emoji, i, i + 8, Spannable.SPAN_INCLUSIVE_EXCLUSIVE);
+                        addemoji.setSpan(emoji, i, i + 1, Spannable.SPAN_INCLUSIVE_EXCLUSIVE);
                         break;
-                    case '1':
-                        e=getResources().getDrawable(R.drawable.cry);
+                    case '嚳':
+                        e = getResources().getDrawable(R.drawable.cry);
                         e.setBounds(0, 0, 40, 40);
                         emoji = new ImageSpan(e, ImageSpan.ALIGN_BASELINE);
-                        addemoji.setSpan(emoji, i, i + 8, Spannable.SPAN_INCLUSIVE_EXCLUSIVE);
+                        addemoji.setSpan(emoji, i, i + 1, Spannable.SPAN_INCLUSIVE_EXCLUSIVE);
                         break;
-                    case '2':
-                        e=getResources().getDrawable(R.drawable.arrogance);
+                    case '郄':
+                        e = getResources().getDrawable(R.drawable.arrogance);
                         e.setBounds(0, 0, 40, 40);
                         emoji = new ImageSpan(e, ImageSpan.ALIGN_BASELINE);
-                        addemoji.setSpan(emoji, i, i + 8, Spannable.SPAN_INCLUSIVE_EXCLUSIVE);
+                        addemoji.setSpan(emoji, i, i + 1, Spannable.SPAN_INCLUSIVE_EXCLUSIVE);
                         break;
-                    case '3':
-                        e=getResources().getDrawable(R.drawable.dementia);
+                    case '贔':
+                        e = getResources().getDrawable(R.drawable.dementia);
                         e.setBounds(0, 0, 40, 40);
                         emoji = new ImageSpan(e, ImageSpan.ALIGN_BASELINE);
-                        addemoji.setSpan(emoji, i, i + 8, Spannable.SPAN_INCLUSIVE_EXCLUSIVE);
+                        addemoji.setSpan(emoji, i, i + 1, Spannable.SPAN_INCLUSIVE_EXCLUSIVE);
                         break;
-                    case '4':
-                        e=getResources().getDrawable(R.drawable.unhappy);
+                    case '鞷':
+                        e = getResources().getDrawable(R.drawable.unhappy);
                         e.setBounds(0, 0, 40, 40);
                         emoji = new ImageSpan(e, ImageSpan.ALIGN_BASELINE);
-                        addemoji.setSpan(emoji, i, i + 8, Spannable.SPAN_INCLUSIVE_EXCLUSIVE);
+                        addemoji.setSpan(emoji, i, i + 1, Spannable.SPAN_INCLUSIVE_EXCLUSIVE);
                         break;
-                    case '5':
-                        e=getResources().getDrawable(R.drawable.sweat);
+                    case '鼊':
+                        e = getResources().getDrawable(R.drawable.sweat);
                         e.setBounds(0, 0, 40, 40);
                         emoji = new ImageSpan(e, ImageSpan.ALIGN_BASELINE);
-                        addemoji.setSpan(emoji, i, i + 8, Spannable.SPAN_INCLUSIVE_EXCLUSIVE);
+                        addemoji.setSpan(emoji, i, i + 1, Spannable.SPAN_INCLUSIVE_EXCLUSIVE);
                         break;
-                    case '6':
-                        e=getResources().getDrawable(R.drawable.think);
+                    case '韘':
+                        e = getResources().getDrawable(R.drawable.think);
                         e.setBounds(0, 0, 40, 40);
                         emoji = new ImageSpan(e, ImageSpan.ALIGN_BASELINE);
-                        addemoji.setSpan(emoji, i, i + 8, Spannable.SPAN_INCLUSIVE_EXCLUSIVE);
+                        addemoji.setSpan(emoji, i, i + 1, Spannable.SPAN_INCLUSIVE_EXCLUSIVE);
                         break;
-                    case '7':
-                        e=getResources().getDrawable(R.drawable.good);
+                    case '鏚':
+                        e = getResources().getDrawable(R.drawable.good);
                         e.setBounds(0, 0, 40, 40);
                         emoji = new ImageSpan(e, ImageSpan.ALIGN_BASELINE);
-                        addemoji.setSpan(emoji, i, i + 8, Spannable.SPAN_INCLUSIVE_EXCLUSIVE);
+                        addemoji.setSpan(emoji, i, i + 1, Spannable.SPAN_INCLUSIVE_EXCLUSIVE);
                         break;
                 }
             }
-        }
         Content_2.setText(addemoji.subSequence(1,addemoji.length()));
         //Content.setText("jshjkshu");
     }
