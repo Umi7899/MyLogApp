@@ -262,7 +262,7 @@ public class LogToday extends AppCompatActivity {
                         break;
                     case '7':
                         e=getResources().getDrawable(R.drawable.good);
-                        e.setBounds(0, 0, e.getIntrinsicWidth(), e.getIntrinsicHeight());
+                        e.setBounds(0, 0, 40, 40);
                         emoji = new ImageSpan(e, ImageSpan.ALIGN_BASELINE);
                         addemoji.setSpan(emoji, i, i + 8, Spannable.SPAN_INCLUSIVE_EXCLUSIVE);
                         break;
@@ -325,7 +325,7 @@ public class LogToday extends AppCompatActivity {
                             break;
                         case '7':
                             e = getResources().getDrawable(R.drawable.good);
-                            e.setBounds(0, 0, e.getIntrinsicWidth(), e.getIntrinsicHeight());
+                            e.setBounds(0, 0, 40, 40);
                             emoji = new ImageSpan(e, ImageSpan.ALIGN_BASELINE);
                             addemoji.setSpan(emoji, i, i + 8, Spannable.SPAN_INCLUSIVE_EXCLUSIVE);
                             break;
