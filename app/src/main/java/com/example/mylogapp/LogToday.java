@@ -63,7 +63,7 @@ public class LogToday extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 //sign=2;
-                //savetext=String.valueOf(musicnote)+Content.getText().toString();
+                savetext=String.valueOf(musicnote)+Content.getText().toString();
                 Intent intentmusic=new Intent(LogToday.this,MusicList.class);
                 startActivityForResult(intentmusic,1);
             }
