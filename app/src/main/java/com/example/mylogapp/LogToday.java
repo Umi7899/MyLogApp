@@ -335,7 +335,7 @@ public class LogToday extends AppCompatActivity {
         Content.setText(addemoji.subSequence(1, addemoji.length()));
         //Content.setText("jshjkshu");
     }
-    private class Myconnection implements ServiceConnection {
+    private class Myconnection implements ServiceConnection {//
         public void onServiceConnected(ComponentName componentName, IBinder iBinder)
         {
 
