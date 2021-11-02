@@ -99,14 +99,14 @@ public class ViewLogs extends AppCompatActivity {
     protected void onStart()
     {
         super.onStart();
-        if(sign==1) {
+        //if(sign==1) {
             //NameID = this.getIntent().getStringExtra("emojiid");
             if(NameID!=null)
                 addpictures(NameID);
             else
-                Content_1.setText(savetext.substring(1));
-            sign=0;
-        }else
+        //        Content_1.setText(savetext.substring(1));
+       //     sign=0;
+        //}else
             addpictures();
     }
     //重写onDestroy方法，在退出编辑返回首页的时候获得输入内容

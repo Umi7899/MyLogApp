@@ -36,18 +36,18 @@ public class MusicList extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_music_list1);
+        setContentView(R.layout.activity_music_list);
         musiclist=(ListView) (ListView) findViewById(R.id.musiclist);
-        Button Return=(Button) findViewById(R.id.Returnlogtoday);
-        Return.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intentback=new Intent();
-                intentback.putExtra("musicnote",musicnote);
-                setResult(RESULT_OK,intentback);
-                finish();
-            }
-        });
+//        Button Return=(Button) findViewById(R.id.Returnlogtoday);
+//        Return.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                Intent intentback=new Intent();
+//                intentback.putExtra("musicnote",musicnote);
+//                setResult(RESULT_OK,intentback);
+//                finish();
+//            }
+//        });
         //if(ContextCompat.checkSelfPermission(MusicList.this, Manifest.permission.WRITE_EXTERNAL_STORAGE)!= PackageManager.PERMISSION_GRANTED)
         //{
        //     ActivityCompat.requestPermissions(MusicList.this,new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},1);
@@ -72,6 +72,10 @@ public class MusicList extends AppCompatActivity {
                     MusicList.this.startService(intent);
                      conn=new Myconnection();
                     bindService(intent,conn, Context.BIND_AUTO_CREATE);
+                    Intent intentback=new Intent();
+                    intentback.putExtra("musicnote",musicnote);
+                    setResult(RESULT_OK,intentback);
+                    finish();
                 }
             });}catch (Exception e){
             e.printStackTrace();

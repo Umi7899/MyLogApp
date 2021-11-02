@@ -36,16 +36,16 @@ public class EmojiList extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_emoji_list);
         //musicnote=this.getIntent().getIntExtra("musicnote",0);
-        Button back=(Button) findViewById(R.id.back);
-        back.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intentback=new Intent();
-                intentback.putExtra("emojiid","");
-                setResult(RESULT_OK,intentback);
-                finish();
-            }
-        });
+//        Button back=(Button) findViewById(R.id.back);
+//        back.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                Intent intentback=new Intent();
+//                intentback.putExtra("emojiid","");
+//                setResult(RESULT_OK,intentback);
+//                finish();
+//            }
+//        });
         emojilist=(ListView) (ListView) findViewById(R.id.emojilist);
         //if(ContextCompat.checkSelfPermission(EmojiList.this, Manifest.permission.WRITE_EXTERNAL_STORAGE)!= PackageManager.PERMISSION_GRANTED)
        // {

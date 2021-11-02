@@ -58,7 +58,7 @@ public class LogToday extends AppCompatActivity {
 
         Button music=(Button) findViewById(R.id.music);
         Button emoji=(Button) findViewById(R.id.emoji);
-        Button backmain=(Button)findViewById(R.id.backmain);
+        //Button backmain=(Button)findViewById(R.id.backmain);
         music.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -80,13 +80,13 @@ public class LogToday extends AppCompatActivity {
                 startActivityForResult(intentemoji,2);
             }
         });
-        backmain.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                System.out.println(musicnote);
-                finish();
-            }
-        });
+//        backmain.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                System.out.println(musicnote);
+//                finish();
+//            }
+//        });
         Content = (EditText) findViewById(R.id.Content);
         String inputText=load();
         //if(sign==0)
@@ -113,14 +113,14 @@ public class LogToday extends AppCompatActivity {
     protected void onStart()
     {
         super.onStart();
-        if(sign==1) {
+        //if(sign==1) {
             //NameID = this.getIntent().getStringExtra("emojiid");
             if(NameID!=null)
             addpictures(NameID);
             else
-                Content.setText(savetext.substring(1));
-            sign=0;
-        }else
+                //Content.setText(savetext.substring(1));
+            //sign=0;
+        //}else
             addpictures();
     }
     //重写onDestroy方法，在退出编辑返回首页的时候获得输入内容
