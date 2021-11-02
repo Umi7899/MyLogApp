@@ -42,10 +42,10 @@ public class MusicList extends AppCompatActivity {
         Return.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intentback=new Intent(MusicList.this,LogToday.class);
+                Intent intentback=new Intent();
                 intentback.putExtra("musicnote",musicnote);
-                intentback.putExtra("loadjudge","N");
-                startActivity(intentback);
+                setResult(RESULT_OK,intentback);
+                finish();
             }
         });
         //if(ContextCompat.checkSelfPermission(MusicList.this, Manifest.permission.WRITE_EXTERNAL_STORAGE)!= PackageManager.PERMISSION_GRANTED)

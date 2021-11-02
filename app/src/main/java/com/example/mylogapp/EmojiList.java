@@ -30,19 +30,20 @@ import java.util.List;
 public class EmojiList extends AppCompatActivity {
     private ListView emojilist;
     private List<Picture> picturelist=new ArrayList<>();
-    int musicnote=0;
+    //int musicnote=0;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_emoji_list);
-        musicnote=this.getIntent().getIntExtra("musicnote",0);
+        //musicnote=this.getIntent().getIntExtra("musicnote",0);
         Button back=(Button) findViewById(R.id.back);
         back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intentback=new Intent(EmojiList.this,LogToday.class);
+                Intent intentback=new Intent();
                 intentback.putExtra("emojiid","");
-                startActivity(intentback);
+                setResult(RESULT_OK,intentback);
+                finish();
             }
         });
         emojilist=(ListView) (ListView) findViewById(R.id.emojilist);
@@ -60,11 +61,12 @@ public class EmojiList extends AppCompatActivity {
                     Picture picture=picturelist.get(position);
                     //SpannableString addemoji=new SpannableString("");
                     //addemoji.setSpan(picture.spanStr,addemoji.length()-1,addemoji.length(), Spanned.SPAN_INCLUSIVE_EXCLUSIVE);
-                    Intent logtoday=new Intent(EmojiList.this,LogToday.class);
+                    Intent logtoday=new Intent();
                     logtoday.putExtra("emojiid",picture.getNameID());
-                    logtoday.putExtra("musicnote",musicnote);
-                    logtoday.putExtra("loadjudge","N");
-                    startActivity(logtoday);
+                    setResult(RESULT_OK,logtoday);
+                    //logtoday.putExtra("musicnote",musicnote);
+                    //logtoday.putExtra("loadjudge","N");
+                    finish();
                 }
             });
         //}

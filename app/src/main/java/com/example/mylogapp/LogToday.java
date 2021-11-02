@@ -34,9 +34,9 @@ public class LogToday extends AppCompatActivity {
     private EditText Content;
     String NameID=null;
     static int sign=0;
-    static String savetext;
+    static String savetext="0";
     static int index;
-    String loadjudge="N";
+    //String loadjudge="N";
     Myconnection conn;//
     Intent intentms;//
     static int musicnote=0;//
@@ -52,8 +52,8 @@ public class LogToday extends AppCompatActivity {
         setContentView(R.layout.activity_log_today);
 
         intentms = new Intent(LogToday.this, Musicservice.class);//
-        musicnote=this.getIntent().getIntExtra("musicnote",0);
-        loadjudge=this.getIntent().getStringExtra("loadjudge");
+        //musicnote=this.getIntent().getIntExtra("musicnote",0);
+        //loadjudge=this.getIntent().getStringExtra("loadjudge");
         System.out.println(musicnote+"A");
 
         Button music=(Button) findViewById(R.id.music);
@@ -62,10 +62,10 @@ public class LogToday extends AppCompatActivity {
         music.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                sign=2;
-                savetext=String.valueOf(musicnote)+Content.getText().toString();
+                //sign=2;
+                //savetext=String.valueOf(musicnote)+Content.getText().toString();
                 Intent intentmusic=new Intent(LogToday.this,MusicList.class);
-                startActivity(intentmusic);
+                startActivityForResult(intentmusic,1);
             }
         });
         emoji.setOnClickListener(new View.OnClickListener() {
@@ -76,34 +76,31 @@ public class LogToday extends AppCompatActivity {
                 savetext=String.valueOf(musicnote)+Content.getText().toString();
                // System.out.println(savetext);
                 Intent intentemoji=new Intent(LogToday.this,EmojiList.class);
-                intentemoji.putExtra("musicnote",musicnote);
-                startActivity(intentemoji);
+                //intentemoji.putExtra("musicnote",musicnote);
+                startActivityForResult(intentemoji,2);
             }
         });
         backmain.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intentmain=new Intent(LogToday.this,MainActivity.class);
-                startActivity(intentmain);
                 System.out.println(musicnote);
                 finish();
             }
         });
         Content = (EditText) findViewById(R.id.Content);
         String inputText=load();
-        if(sign==0)
+        //if(sign==0)
         savetext=load();
         if(load()=="")
         {
             inputText="0";
-            if(sign==0)
-                savetext="0";
+            savetext="0";
         }
         System.out.println(musicnote+"B");
         //System.out.println(sign);
-        if(!TextUtils.isEmpty(inputText)){
+        if(!TextUtils.isEmpty(inputText.substring(1))){
             Content.setText(inputText.substring(1));
-            //Content.setSelection(inputText.length());
+            Content.setSelection(inputText.substring(1).length());
         }
         //if(sign==0)
         if(musicnote!=0) {//
@@ -117,11 +114,11 @@ public class LogToday extends AppCompatActivity {
     {
         super.onStart();
         if(sign==1) {
-            NameID = this.getIntent().getStringExtra("emojiid");
+            //NameID = this.getIntent().getStringExtra("emojiid");
             if(NameID!=null)
             addpictures(NameID);
             else
-                Content.setText(savetext);
+                Content.setText(savetext.substring(1));
             sign=0;
         }else
             addpictures();
@@ -130,7 +127,7 @@ public class LogToday extends AppCompatActivity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        String inputText=Content.getText().toString();
+        String inputText=String.valueOf(musicnote)+Content.getText().toString();
         System.out.println("save");
         save(inputText);
         intentms.putExtra("music",0);
@@ -139,14 +136,28 @@ public class LogToday extends AppCompatActivity {
         bindService(intentms, conn, BIND_AUTO_CREATE);//
         System.out.println(musicnote);
     }
-
+    protected void onActivityResult(int requestCode,int resultCode,Intent data){
+        super.onActivityResult(requestCode,resultCode,data);
+        switch(requestCode){
+            case 1:
+                if(resultCode==RESULT_OK)
+                {
+                    musicnote=data.getIntExtra("musicnote",0);
+                }
+            case 2:
+                if(resultCode==RESULT_OK)
+                {
+                    NameID=data.getStringExtra("emojiid");
+                }
+        }
+    }
     public void save(String inputText) {
         FileOutputStream out=null;
         BufferedWriter writer=null;
         try{//文本写入文件
             out=openFileOutput(date_string, Context.MODE_PRIVATE);
             writer=new BufferedWriter(new OutputStreamWriter(out));
-            writer.write(String.valueOf(musicnote)+inputText);
+            writer.write(inputText);
         }catch (IOException e) {//异常处理
             e.printStackTrace();
         }finally {

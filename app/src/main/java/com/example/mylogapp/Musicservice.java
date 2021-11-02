@@ -31,6 +31,7 @@ public class Musicservice extends Service{
     }
     public void onCreate(){
         super.onCreate();
+        System.out.println("*********************");
         player=MediaPlayer.create(this,R.raw.music1);
     }
     public int onStartCommand(Intent intent,int flags,int startId)

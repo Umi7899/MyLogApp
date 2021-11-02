@@ -58,9 +58,9 @@ public class ViewLogs extends AppCompatActivity {
             inputText="0";
             savetext = "0";
         }
-        if(!TextUtils.isEmpty(inputText)){
-            Content_1.setText(inputText);
-            //Content_1.setSelection(inputText.length());
+        if(!TextUtils.isEmpty(inputText.substring(1))){
+            Content_1.setText(inputText.substring(1));
+            Content_1.setSelection(inputText.substring(1).length());
         }
         if(musicnote!=0) {//
             intentms.putExtra("music",musicnote);//
@@ -75,7 +75,7 @@ public class ViewLogs extends AppCompatActivity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        String inputText=Content_1.getText().toString();
+        String inputText=String.valueOf(musicnote)+Content_1.getText().toString();
         save(inputText);
         intentms.putExtra("music",0);
         ViewLogs.this.startService(intentms);//
