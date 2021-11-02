@@ -92,6 +92,4 @@ public class LogToday extends AppCompatActivity {
         }
         return content.toString();
     }
-
-
 }
