@@ -77,7 +77,7 @@ public class Memento extends AppCompatActivity {
         FileOutputStream out=null;
         BufferedWriter writer=null;
         try{//文本写入文件
-            out=openFileOutput(date_string, Context.MODE_PRIVATE);
+            out=openFileOutput(date_string+"1", Context.MODE_PRIVATE);
             writer=new BufferedWriter(new OutputStreamWriter(out));
             writer.write(inputText);
         }catch (IOException e) {//异常处理
@@ -98,7 +98,7 @@ public class Memento extends AppCompatActivity {
         BufferedReader reader=null;
         StringBuilder content=new StringBuilder();
         try{
-            in=openFileInput(date_string);
+            in=openFileInput(date_string+"1");
             reader=new BufferedReader(new InputStreamReader(in));
             String line="";
             //逐行读取写入content

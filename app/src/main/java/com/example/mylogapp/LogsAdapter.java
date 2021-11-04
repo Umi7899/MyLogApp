@@ -35,7 +35,6 @@ public class LogsAdapter extends RecyclerView.Adapter<LogsAdapter.ViewHolder> {
     }
 
     public LogsAdapter(List<Logs> getLogsList,boolean onlyRead){
-
         LogsList=getLogsList;
         ifRead=onlyRead;
     }
@@ -47,7 +46,6 @@ public class LogsAdapter extends RecyclerView.Adapter<LogsAdapter.ViewHolder> {
         }
 
         View view= LayoutInflater.from(mContext).inflate(R.layout.logs_layout,parent,false);
-
         final ViewHolder holder=new ViewHolder(view);
         holder.cardView.setOnClickListener(new View.OnClickListener() {
             @Override

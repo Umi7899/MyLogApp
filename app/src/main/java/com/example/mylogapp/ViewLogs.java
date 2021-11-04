@@ -99,6 +99,4 @@ public class ViewLogs extends AppCompatActivity {
         }
         return content.toString();
     }
-
-
 }
