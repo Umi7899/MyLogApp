@@ -18,11 +18,13 @@ public class FileUtil {
 
         String[] files02 = new String[LogNums];
         int j = 0;
-        for (int i = 0; i < LogNums; i++) {
-            File file02 = new File(folderPath + "/" + files01[i]);
-            if (!file02.isDirectory()) {
-                files02[j] = file02.getName();
-                j++;
+        for (int i = 0; i < files01.length; i++) {
+            if(files01[i].length()==11) {
+                File file02 = new File(folderPath + "/" + files01[i]);
+                if (!file02.isDirectory()) {
+                    files02[j] = file02.getName();
+                    j++;
+                }
             }
         }
         return files02;
