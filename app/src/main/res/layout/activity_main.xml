@@ -52,4 +52,5 @@
         android:text="查看历史日记"
         android:textSize="15dp"/>
 
+
 </LinearLayout>

@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <item name="add_bt_confirm" type="id" />
+    <item name="timePicker1" type="id" />
+    <item name="datePicker1" type="id" />
+    <item name="add_et_title" type="id" />
+    <item name="add_et_note" type="id" />
+</resources>

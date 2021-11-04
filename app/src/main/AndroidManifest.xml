@@ -10,6 +10,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MyLogApp">
         <activity
+            android:name=".Notice"
+            android:exported="true" />
+        <activity
+            android:name=".Memento"
+            android:exported="true" />
+        <activity
             android:name=".ViewLogs_only_Read"
             android:exported="true" />
         <activity
