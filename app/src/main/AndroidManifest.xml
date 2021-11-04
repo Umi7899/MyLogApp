@@ -16,6 +16,18 @@
             android:name=".Memento"
             android:exported="true" />
         <activity
+            android:name=".EmojiList"
+            android:exported="true" />
+
+        <service
+            android:name=".Musicservice"
+            android:enabled="true"
+            android:exported="true" />
+
+        <activity
+            android:name=".MusicList"
+            android:exported="true" />
+        <activity
             android:name=".ViewLogs_only_Read"
             android:exported="true" />
         <activity
