@@ -99,6 +99,7 @@ public class ViewLogs extends AppCompatActivity {
     protected void onStart()
     {
         super.onStart();
+        System.out.println(NameID);
         //if(sign==1) {
             //NameID = this.getIntent().getStringExtra("emojiid");
             if(NameID!=null)
@@ -132,6 +133,10 @@ public class ViewLogs extends AppCompatActivity {
                 if(resultCode==RESULT_OK)
                 {
                     NameID=data.getStringExtra("emojiid");
+                }
+                else
+                {
+                    NameID="";
                 }
         }
     }
