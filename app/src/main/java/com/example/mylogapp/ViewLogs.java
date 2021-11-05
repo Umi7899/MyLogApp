@@ -170,7 +170,7 @@ public class ViewLogs extends AppCompatActivity {
             String line="";
             //逐行读取写入content
             while((line=reader.readLine())!=null){
-                content.append(line);
+                content.append(line+"\n");
             }
             musicnote=Integer.valueOf(content.toString().substring(0,1));
         }catch (IOException e) {//异常处理

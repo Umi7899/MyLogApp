@@ -59,7 +59,7 @@ public class MusicList extends AppCompatActivity {
     }
     private void initMediaPlayer(){
         try{
-            String[] mlist ={"music1.mp3","music2.mp3","music3.mp3","暂停播放"};
+            String[] mlist ={"平淡的音乐.mp3","感伤的音乐.mp3","欢快的音乐.mp3","暂停播放"};
             ArrayAdapter<String> mAdapter = new ArrayAdapter<String>(MusicList.this,android.R.layout.simple_list_item_1,mlist);
             //设置Adapter
             musiclist.setAdapter(mAdapter);

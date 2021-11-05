@@ -15,6 +15,7 @@ import android.text.Spannable;
 import android.text.SpannableString;
 import android.text.TextUtils;
 import android.text.style.ImageSpan;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -33,10 +34,9 @@ public class LogToday extends AppCompatActivity {
 
     private EditText Content;
     String NameID = null;
-    static int sign = 0;
+    static int pause_sign = 0;
     static String savetext = "0";
     static int index;
-    //String loadjudge="N";
     Myconnection conn;//
     Intent intentms;//
     static int musicnote = 0;//
@@ -48,6 +48,7 @@ public class LogToday extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_log_today);
 
@@ -71,7 +72,6 @@ public class LogToday extends AppCompatActivity {
         emoji.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                sign = 1;
                 index = Content.getSelectionStart() + 1;
                 savetext = String.valueOf(musicnote) + Content.getText().toString();
                 // System.out.println(savetext);
@@ -80,13 +80,7 @@ public class LogToday extends AppCompatActivity {
                 startActivityForResult(intentemoji, 2);
             }
         });
-//        backmain.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                System.out.println(musicnote);
-//                finish();
-//            }
-//        });
+
         Content = (EditText) findViewById(R.id.Content);
         String inputText = load();
         //if(sign==0)
@@ -109,18 +103,30 @@ public class LogToday extends AppCompatActivity {
             bindService(intentms, conn, BIND_AUTO_CREATE);//
         }//
     }
-
+    @Override
     protected void onStart() {
         super.onStart();
-        //if(sign==1) {
-        //NameID = this.getIntent().getStringExtra("emojiid");
+        if(pause_sign==1) {
+            load();
+        }
         if (NameID != null)
             addpictures(NameID);
         else
-            //Content.setText(savetext.substring(1));
-            //sign=0;
-            //}else
             addpictures();
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        pause_sign=1;
+        String inputText = String.valueOf(musicnote) + Content.getText().toString();
+        System.out.println("save");
+        save(inputText);
+        intentms.putExtra("music", 0);
+        LogToday.this.startService(intentms);//
+        conn = new Myconnection();//
+        bindService(intentms, conn, BIND_AUTO_CREATE);//
+        System.out.println(musicnote);
     }
 
     //重写onDestroy方法，在退出编辑返回首页的时候获得输入内容
@@ -182,15 +188,10 @@ public class LogToday extends AppCompatActivity {
         try {
             in = openFileInput(date_string);
             reader = new BufferedReader(new InputStreamReader(in));
-            /*if(loadjudge=="Y") {
-                System.out.println(loadjudge);
-                System.out.println("loadsuccess");
-                musicnote = Integer.valueOf(date_string.substring(11));
-            }*/
             String line = "";
             //逐行读取写入content
             while ((line = reader.readLine()) != null) {
-                content.append(line);
+                content.append(line+"\n");
             }
             musicnote = Integer.valueOf(content.toString().substring(0, 1));
         } catch (IOException e) {//异常处理

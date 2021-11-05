@@ -45,7 +45,6 @@ public class ViewLogs_only_Read extends AppCompatActivity {
         Content_2 = (TextView) findViewById(R.id.Content_2);
         DATE=(TextView)findViewById(R.id.date);
         DATE.setText(logsName);
-        TextView textView=findViewById(R.id.count_words_1);
 
         String inputText=load();
         savetext=load();
@@ -85,7 +84,7 @@ public class ViewLogs_only_Read extends AppCompatActivity {
             String line="";
             //逐行读取写入content
             while((line=reader.readLine())!=null){
-                content.append(line);
+                content.append(line+"\n");
             }
             musicnote=Integer.valueOf(content.toString().substring(0,1));
         }catch (IOException e) {//异常处理
