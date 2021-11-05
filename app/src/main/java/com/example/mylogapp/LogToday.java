@@ -15,7 +15,6 @@ import android.text.Spannable;
 import android.text.SpannableString;
 import android.text.TextUtils;
 import android.text.style.ImageSpan;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -34,9 +33,10 @@ public class LogToday extends AppCompatActivity {
 
     private EditText Content;
     String NameID = null;
-    static int pause_sign = 0;
+    static int sign = 0;
     static String savetext = "0";
     static int index;
+    //String loadjudge="N";
     Myconnection conn;//
     Intent intentms;//
     static int musicnote = 0;//
@@ -48,7 +48,6 @@ public class LogToday extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_log_today);
 
@@ -72,6 +71,7 @@ public class LogToday extends AppCompatActivity {
         emoji.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                sign = 1;
                 index = Content.getSelectionStart() + 1;
                 savetext = String.valueOf(musicnote) + Content.getText().toString();
                 // System.out.println(savetext);
@@ -80,7 +80,13 @@ public class LogToday extends AppCompatActivity {
                 startActivityForResult(intentemoji, 2);
             }
         });
-
+//        backmain.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                System.out.println(musicnote);
+//                finish();
+//            }
+//        });
         Content = (EditText) findViewById(R.id.Content);
         String inputText = load();
         //if(sign==0)
@@ -103,30 +109,13 @@ public class LogToday extends AppCompatActivity {
             bindService(intentms, conn, BIND_AUTO_CREATE);//
         }//
     }
-    @Override
+
     protected void onStart() {
         super.onStart();
-        if(pause_sign==1) {
-            load();
-        }
         if (NameID != null)
             addpictures(NameID);
         else
             addpictures();
-    }
-
-    @Override
-    protected void onPause() {
-        super.onPause();
-        pause_sign=1;
-        String inputText = String.valueOf(musicnote) + Content.getText().toString();
-        System.out.println("save");
-        save(inputText);
-        intentms.putExtra("music", 0);
-        LogToday.this.startService(intentms);//
-        conn = new Myconnection();//
-        bindService(intentms, conn, BIND_AUTO_CREATE);//
-        System.out.println(musicnote);
     }
 
     //重写onDestroy方法，在退出编辑返回首页的时候获得输入内容
