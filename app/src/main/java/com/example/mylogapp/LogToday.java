@@ -33,10 +33,10 @@ public class LogToday extends AppCompatActivity {
 
     private EditText Content;
     String NameID = null;
-    static int sign = 0;
+    static int pausesign = 0;
     static String savetext = "0";
     static int index;
-    //String loadjudge="N";
+
     Myconnection conn;//
     Intent intentms;//
     static int musicnote = 0;//
@@ -62,7 +62,7 @@ public class LogToday extends AppCompatActivity {
         music.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //sign=2;
+                pausesign = 0;
                 savetext = String.valueOf(musicnote) + Content.getText().toString();
                 Intent intentmusic = new Intent(LogToday.this, MusicList.class);
                 startActivityForResult(intentmusic, 1);
@@ -71,7 +71,7 @@ public class LogToday extends AppCompatActivity {
         emoji.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                sign = 1;
+                pausesign = 0;
                 index = Content.getSelectionStart() + 1;
                 savetext = String.valueOf(musicnote) + Content.getText().toString();
                 // System.out.println(savetext);
@@ -80,13 +80,7 @@ public class LogToday extends AppCompatActivity {
                 startActivityForResult(intentemoji, 2);
             }
         });
-//        backmain.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                System.out.println(musicnote);
-//                finish();
-//            }
-//        });
+
         Content = (EditText) findViewById(R.id.Content);
         String inputText = load();
         //if(sign==0)
@@ -110,12 +104,47 @@ public class LogToday extends AppCompatActivity {
         }//
     }
 
+    @Override
     protected void onStart() {
         super.onStart();
-        if (NameID != null)
+        if (pausesign == 1) {
+            String inputText = load();
+            savetext = load();
+            if (load() == "") {
+                inputText = "0";
+                savetext = "0";
+            }
+            if (!TextUtils.isEmpty(inputText.substring(1))) {
+                Content.setText(inputText.substring(1));
+                Content.setSelection(inputText.substring(1).length());
+            }
+            if (musicnote != 0) {
+                intentms.putExtra("music", musicnote);//
+                LogToday.this.startService(intentms);//
+                conn = new Myconnection();//
+                bindService(intentms, conn, BIND_AUTO_CREATE);//
+            }
+        }
+        if (NameID != null) {
             addpictures(NameID);
+            NameID=null;
+        }
         else
             addpictures();
+        pausesign = 1;
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        if (pausesign == 1) {
+            String inputText = String.valueOf(musicnote) + Content.getText().toString();
+            save(inputText);
+            intentms.putExtra("music", 0);
+            LogToday.this.startService(intentms);
+            conn = new Myconnection();
+            bindService(intentms, conn, BIND_AUTO_CREATE);
+        }
     }
 
     //重写onDestroy方法，在退出编辑返回首页的时候获得输入内容
@@ -142,10 +171,8 @@ public class LogToday extends AppCompatActivity {
             case 2:
                 if (resultCode == RESULT_OK) {
                     NameID = data.getStringExtra("emojiid");
-                }
-                else
-                {
-                    NameID="";
+                } else {
+                    NameID = "";
                 }
         }
     }
@@ -179,8 +206,13 @@ public class LogToday extends AppCompatActivity {
             reader = new BufferedReader(new InputStreamReader(in));
             String line = "";
             //逐行读取写入content
+            int count=0;
             while ((line = reader.readLine()) != null) {
-                content.append(line+"\n");
+                if((line.equals("0") || line.equals("1") || line.equals("2") || line.equals("3"))&&count==0)
+                    content.append(line);
+                else
+                    content.append(line + "\n");
+                count++;
             }
             musicnote = Integer.valueOf(content.toString().substring(0, 1));
         } catch (IOException e) {//异常处理
@@ -326,17 +358,14 @@ public class LogToday extends AppCompatActivity {
             }
         }
         Content.setText(addemoji.subSequence(1, addemoji.length()));
-        //Content.setText("jshjkshu");
     }
 
     private class Myconnection implements ServiceConnection {//
 
         public void onServiceConnected(ComponentName componentName, IBinder iBinder) {
-
         }
 
         public void onServiceDisconnected(ComponentName componentName) {
-
         }
     }
 }

@@ -33,7 +33,7 @@ public class ViewLogs extends AppCompatActivity {
 
     private EditText Content_1;
     String NameID=null;
-    static int sign=0;
+    static int pausesign=0;
     static String savetext="0";
     static int index;
     private TextView DATE;
@@ -65,7 +65,7 @@ public class ViewLogs extends AppCompatActivity {
         emoji1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                sign=1;
+                pausesign=1;
                 index=Content_1.getSelectionStart()+1;
                 savetext=String.valueOf(musicnote)+Content_1.getText().toString();
                 // System.out.println(savetext);
@@ -96,20 +96,53 @@ public class ViewLogs extends AppCompatActivity {
         }//
         //addpictures();
     }
+
     protected void onStart()
     {
         super.onStart();
-        System.out.println(NameID);
-        //if(sign==1) {
-            //NameID = this.getIntent().getStringExtra("emojiid");
-            if(NameID!=null)
-                addpictures(NameID);
-            else
-        //        Content_1.setText(savetext.substring(1));
-       //     sign=0;
-        //}else
+        if(pausesign==1)
+        {
+            String inputText=load();
+            savetext=load();
+            if(load()=="")
+            {
+                inputText="0";
+                savetext="0";
+            }
+            if(!TextUtils.isEmpty(inputText.substring(1))){
+                Content_1.setText(inputText.substring(1));
+                Content_1.setSelection(inputText.substring(1).length());
+            }
+            if(musicnote!=0) {
+                intentms.putExtra("music",musicnote);//
+                ViewLogs.this.startService(intentms);//
+                conn = new Myconnection();//
+                bindService(intentms, conn, BIND_AUTO_CREATE);//
+            }
+        }
+        if(NameID!=null){
+            addpictures(NameID);
+            NameID=null;
+        }
+        else
             addpictures();
+        pausesign=1;
     }
+
+
+    protected void onPause()
+    {
+        super.onPause();
+        if(pausesign==1) {
+            String inputText = String.valueOf(musicnote) + Content_1.getText().toString();
+            save(inputText);
+            intentms.putExtra("music", 0);
+            ViewLogs.this.startService(intentms);
+            conn = new Myconnection();
+            bindService(intentms, conn, BIND_AUTO_CREATE);
+        }
+    }
+
     //重写onDestroy方法，在退出编辑返回首页的时候获得输入内容
     @Override
     protected void onDestroy() {

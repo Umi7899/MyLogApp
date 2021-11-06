@@ -22,6 +22,7 @@ public class Notice extends AppCompatActivity {
             }
         });
         builder.show();
+
     }
 
 }
